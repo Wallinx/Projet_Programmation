@@ -59,17 +59,20 @@ def tray_game():
         print(term.black + term.move_right(-1) + ("━"), end='')
         print(term.black + term.move_right(-1) + ("┳"), end='')
     print(term.move_xy(80,0) + ("┓"), end='')
+    
     y = 0
     print(term.black + term.home + term.move_down(y) + ("┃"), end='')
     i = 0
     while i < 20 :
         i = i + 1 
         print(term.black + term.move_right(3) + ("┃"), end='')
+    
     x, y, j = 0, 1, 0
-    while j < 10:     
+    while j < 19:     
            
         y = y + 1
         print(term.black + term.home + term.move_y(y) + ("┣"), end='')
+        
         i = 0
         while i < 20 :
             i = i + 1 
@@ -78,6 +81,7 @@ def tray_game():
             print(term.black + term.move_right(-1) + ("━"), end='')
             print(term.black + term.move_right(-1) + ("╋"), end='')
         print(term.black + term.home + term.move_xy(80,y) + ("┫"), end='')
+        
         y = y + 1
         print(term.black + term.home + term.move_down(y) + ("┃"), end='')
         i = 0
@@ -86,7 +90,7 @@ def tray_game():
             print(term.black + term.move_right(3) + ("┃"), end='')
         j = j + 1
     
-    print(term.black + term.move_xy(0,22) + ("┗"), end='')
+    print(term.black + term.move_xy(0,40) + ("┗"), end='')
     i = 0
     while i < 20:
         i = i + 1 
@@ -94,9 +98,9 @@ def tray_game():
         print(term.black + term.move_right(-1) + ("━"), end='')
         print(term.black + term.move_right(-1) + ("━"), end='')
         print(term.black + term.move_right(-1) + ("┻"), end='')
-    print(term.move_xy(80,22) + ("┛"), end='')
+    print(term.move_xy(80,40) + ("┛"), end='')
 
-
+    
 #-----------------------------------------------------------------------------------------------------------
 # main function
 def creat_ants_1():
