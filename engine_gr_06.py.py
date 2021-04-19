@@ -170,7 +170,7 @@ def placement_clods():
     clods_3 = u"{}".format(clods_3)
     
     liste_X_2 = [2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 66, 70, 74, 78]
-    liste_Y_2 = [9, 11, 13]
+    liste_Y_2 = [17, 19, 21]
 
     i = 0
     while i < 5 :
