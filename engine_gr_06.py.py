@@ -225,7 +225,7 @@ def creat_ants_2():
     """
 
     liste_X_3 = [6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 66, 70, 74]
-    liste_Y_3 = [19]
+    liste_Y_3 = [37]
 
     fourmi_1 = "\u22C0"
     fourmi_1 = u"{}".format(fourmi_1)
