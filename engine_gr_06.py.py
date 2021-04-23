@@ -390,6 +390,7 @@ def shoot (ant_1,ant_2,r1,c1,r2,c2) :
     -----
     Shoot: Check the aiming conditions, then shoot and at the end reduce the life points of the ants.
     specification: Achraf El aich (v.1 21/02/2021).
+    implementation Achraf El aich (v.1 21/02/2021).
 
     """
 
@@ -551,7 +552,9 @@ def moving_clods(x, y, strenght, key):
 
     version
     --------
-    specification: Achraf el aich (v.1 21/02/2021)
+    specification: Achraf el aich (v.1 21/02/2021).
+    implementation Achraf El aich (v.1 21/02/2021).
+
     """
 
     global LIST
