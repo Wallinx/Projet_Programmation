@@ -1,0 +1,365 @@
+import blessed, time, random
+
+term = blessed.Terminal()
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+D = {
+"map":[30, 40],
+"anthtills":[[12, 5], [17, 36]],
+"clods":[
+[30, 40, 1],
+[15, 19, 1],
+[15, 20, 1],
+[14, 21, 1],
+[14, 22, 2],
+[1, 22, 1],
+[2, 23, 1],
+[3, 5, 1],
+[4, 28, 1],
+[5, 34, 1],
+[5, 12, 1],
+[6, 1, 1],
+[7, 4, 2],
+[7, 40, 1],
+[9, 21, 1],
+[10, 1, 1],
+[11, 28, 1],
+[12, 34, 1],
+[13, 12, 1],
+[14, 39, 1],
+[15, 1, 1],
+[16, 7, 2],
+[17, 30, 1],
+[18, 30, 1],
+[19, 12, 1],
+[20, 20, 1],
+[21, 32, 1],
+[22, 34, 1],
+[23, 1, 1],
+[25, 17, 3],
+[25, 32, 1],
+[26, 39, 1],
+[27, 12, 1],
+[28, 1, 1],
+[28, 18, 1],
+[29, 32, 1],
+[29, 6, 1],
+[30, 16, 3]]}
+
+LIST = []
+Map       = D["map"]
+Anthtills = D["anthtills"]
+Clods     = D["clods"]
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def intro():
+
+    print(term.clear)
+    Joueur_1 = input(term.red + '| Pseudo joueur 1 : ')
+    Joueur_2 = input(term.red + '| Pseudo joueur 2 : ')
+    print(term.green + '\n| Que le meilleur gagne!')
+    print(term.green + '**************************')
+    time.sleep(2)
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def tray_game():
+
+    color = term.color_rgb(150, 150, 0)
+    color0 = term.color_rgb(250, 240, 0)
+
+    print(term.on_color_rgb(30, 30, 30) + term.clear())
+    print(color0 + term.move_xy(0, 0) + ("┏"), end='')
+    for i in range(20): print(color0 + term.move_right(-1) + ("━━━┳"), end='')
+    print(term.move_xy(80, 0) + ("┓"), end='')
+    print(color0 + term.home + term.move_down(0) + ("┃"), end='')
+    for i in range(19): print(color + term.move_right(3) + ("┃"), end='')
+    print(color0 + term.move_right(3) + ("┃"), end='')
+    for i in range(2, 22, 2):
+        print(color0 + term.home + term.move_y(i) + ("┣"), end='')
+        for ii in range(20): print(color + term.move_right(-1) + ("━━━╋"), end='')
+        print(color0 + term.home + term.move_xy(80, i) + ("┫"), end='')
+        print(color0 + term.home + term.move_down(i + 1) + ("┃"), end='')
+        for i in range(19): print(color + term.move_right(3) + ("┃"), end='')
+        print(color0 + term.move_right(3) + ("┃"), end='')
+    print(color0 + term.move_xy(0, 22) + ("┗"), end='')
+    for i in range(20): print(color0 + term.move_right(-1) + ("━━━┻"), end='')
+    print(term.move_xy(80, 22) + ("┛"), end='')
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def creat_ants_1():
+
+    liste_X_1 = [6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 66, 70, 74]
+    liste_Y_1 = [3]
+
+    fourmi_1 = "X"
+    fourmi_1 = u"{}".format(fourmi_1)
+    fourmi_2 = "\u21CA"
+    fourmi_2 = u"{}".format(fourmi_2)
+    fourmi_3 = "\u22C1"
+    fourmi_3 = u"{}".format(fourmi_3)
+    case_1 = "\u25CC"
+    case_1 = u"{}".format(case_1)
+
+    x = liste_X_1[random.randint(0, 17)]
+    y = liste_Y_1[0]
+    print(term.move_xy(x, y) + term.red + (fourmi_1))
+    print(term.move_x(x + 4) + term.move_y(y) + term.red + (case_1))
+    print(term.move_x(x - 4) + term.move_y(y) + term.red + (case_1))
+    print(term.move_x(x) + term.move_y(y - 2) + term.red + (case_1))
+    print(term.move_x(x + 4) + term.move_y(y - 2) + term.red + (case_1))
+    print(term.move_x(x - 4) + term.move_y(y - 2) + term.red + (case_1))
+    print(term.move_x(x) + term.move_y(y + 2) + term.red + (case_1))
+    print(term.move_x(x + 4) + term.move_y(y + 2) + term.red + (case_1))
+    print(term.move_x(x - 4) + term.move_y(y + 2) + term.red + (case_1))
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def placement_clods():
+
+    color = term.color_rgb(40, 255, 40)
+
+    clods_1 = "#"
+    clods_1 = u"{}".format(clods_1)
+    clods_2 = "&"
+    clods_2 = u"{}".format(clods_2)
+    clods_3 = "$"
+    clods_3 = u"{}".format(clods_3)
+
+    liste_X_2 = [2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 66, 70, 74, 78]
+    liste_Y_2 = [9, 11, 13]
+
+    for i in range(10):
+        random.choice(liste_X_2)
+        x = random.choice(liste_X_2)
+        random.choice(liste_Y_2)
+        y = random.choice(liste_Y_2)
+        print(term.move_xy(x, y) + color + (clods_1))
+        while x in liste_X_2:
+            del liste_X_2[liste_X_2.index(x)]
+
+    for i in range(5):
+        random.choice(liste_X_2)
+        x = random.choice(liste_X_2)
+        random.choice(liste_Y_2)
+        y = random.choice(liste_Y_2)
+        print(term.move_xy(x, y) + color + (clods_2))
+        while x in liste_X_2: del liste_X_2[liste_X_2.index(x)]
+
+    for i in range(5):
+        random.choice(liste_X_2)
+        x = random.choice(liste_X_2)
+        random.choice(liste_Y_2)
+        y = random.choice(liste_Y_2)
+        print(term.move_xy(x, y) + color + (clods_3))
+        while x in liste_X_2: del liste_X_2[liste_X_2.index(x)]
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def creat_ants_2():
+
+    color = term.color_rgb(40, 40, 255)
+
+    liste_X_3 = [6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50, 54, 58, 62, 66, 70, 74]
+    liste_Y_3 = [19]
+
+    fourmi_1 = "X"
+    fourmi_1 = u"{}".format(fourmi_1)
+    fourmi_2 = "\u21C8"
+    fourmi_2 = u"{}".format(fourmi_2)
+    fourmi_3 = "\u2390"
+    fourmi_3 = u"{}".format(fourmi_3)
+    case_2 = "\u25CC"
+    case_2 = u"{}".format(case_2)
+
+    x = liste_X_3[random.randint(0, 17)]
+    y = liste_Y_3[0]
+    print(term.move_xy(x, y) + color + (fourmi_1))
+    print(term.move_x(x + 4) + term.move_y(y) + (case_2))
+    print(term.move_x(x - 4) + term.move_y(y) + (case_2))
+    print(term.move_x(x) + term.move_y(y - 2) + (case_2))
+    print(term.move_x(x + 4) + term.move_y(y - 2) + (case_2))
+    print(term.move_x(x - 4) + term.move_y(y - 2) + (case_2))
+    print(term.move_x(x) + term.move_y(y + 2) + (case_2))
+    print(term.move_x(x + 4) + term.move_y(y + 2) + (case_2))
+    print(term.move_x(x - 4) + term.move_y(y + 2) + (case_2))
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def timer():
+
+    T = 0
+    while True:
+        print (term.move_xy(82,1) + 'TIMER : ', end='')
+        print(T, end='\r')
+        time.sleep(1)
+        T += 1
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def exemple():
+
+    case_1 = "\u25CC"
+    case_1 = u"{}".format(case_1)
+    fourmi_1_1 = "\u22C0"
+    fourmi_1_1 = u"{}".format(fourmi_1_1)
+    fourmi_2_1 = "\u21CA"
+    fourmi_2_1 = u"{}".format(fourmi_2_1)
+    fourmi_3_1 = "\u25BC"
+    fourmi_3_1 = u"{}".format(fourmi_3_1)
+    fourmi_1_2 = "\u22C0"
+    fourmi_1_2 = u"{}".format(fourmi_1_2)
+    fourmi_2_2 = "\u21C8"
+    fourmi_2_2 = u"{}".format(fourmi_2_2)
+    fourmi_3_2 = "\u25B2"
+    fourmi_3_2 = u"{}".format(fourmi_3_2)
+    clods_1 = "\u2726"
+    clods_1 = u"{}".format(clods_1)
+    clods_2 = "\u2737"
+    clods_2 = u"{}".format(clods_2)
+    clods_3 = "\u2739"
+    clods_3 = u"{}".format(clods_3)
+
+    print(term.move_xy(82, 3) + term.white + 'DEPOT : ' + (case_1))
+    print(term.move_xy(82, 5) + term.white + 'Clods de niveau 1 : ' + (clods_1))
+    print(term.move_xy(82, 6) + term.white + 'Clods de niveau 2 : ' + (clods_2))
+    print(term.move_xy(82, 7) + term.white + 'Clods de niveau 3 : ' + (clods_3))
+    print(term.move_xy(82, 8) + term.white + 'Fourmis de niveau 1 : ' + (fourmi_1_1) + ' ' + (fourmi_1_2))
+    print(term.move_xy(82, 9) + term.white + 'Fourmis de niveau 2 : ' + (fourmi_2_1) + ' ' + (fourmi_2_2))
+    print(term.move_xy(82, 10) + term.white + 'Fourmis de niveau 3 : ' + (fourmi_3_1) + ' ' + (fourmi_3_2))
+    print(term.move_xy(82, 12) + term.white + 'Joueur 1 vous jouez en rouge.')
+    print(term.move_xy(82, 13) + term.white + 'Joueur 2 vous jouez en jaune.')
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def score():
+
+    point_1 = 0
+    point_2 = 0
+    print(term.move_xy(82, 15) + term.white + 'Score joueur 1 : ', end='')
+    print(point_1)
+    print(term.move_xy(82, 16) + term.white + 'Score joueur 2 : ', end='')
+    print(point_2)
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def order():
+
+    instructions = input(term.move_xy(82, 18) + 'Give your orders:')
+    the_orders = instructions.split()
+
+    for element in the_orders:
+        if ':@' in element:
+            for char in '@,-,:':
+                element = element.replace(char, ' ')
+            move_order = element.split()
+            move_ant(*move_order)
+
+        elif ':*' in element:
+            for char in '*,-,:':
+                element = element.replace(char, ' ')
+            shoot_order = element.split()
+            shoot(*shoot_order)
+
+        elif ':lift' in element:
+            for char in 'l,i,f,t,:':
+                element = element.replace(char, ' ')
+            lift_order = element.split()
+            lift(*lift_order)
+
+        elif ':drop' in element:
+            for char in 'd,r,o,p,:':
+                element = element.replace(char, ' ')
+            drop_order = element.split()
+            drop(*drop_order)
+
+        else:
+            print(term.move_xy(82, 20) + '--------------')
+            print(term.move_xy(82, 21) + '|Syntax Error|')
+            print(term.move_xy(82, 22) + '--------------')
+            return (order())
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def shoot(ant_1, ant_2, r1, c1, r2, c2):
+
+    if (-2 <= (r1 - r2) <= 2) and (-2 <= (c1 - c2) <= 2):
+        # ================================================================
+        # Niveau 1:
+        if (ant_1["strength"] == 1) and (ant_2["strength"] == 1):
+
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] -= 1
+
+        elif (ant_1["strength"] == 1) and (ant_2["strength"] == 2):
+
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] -= 2
+
+        elif (ant_1["strength"] == 1) and (ant_2["strength"] == 3):
+
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] = 0
+        # ================================================================
+        # Niveau 2 :
+        elif (ant_1["strength"] == 2) and (ant_2["strength"] == 1):
+
+            if ant_1['attack'] == True: ant_2["point_life"] -= 2
+            if ant_2['attack'] == True: ant_1["point_life"] -= 1
+
+        elif (ant_1["strength"] == 2) and (ant_2["strength"] == 2):
+
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] -= 1
+
+        elif (ant_1["strength"] == 2) and (ant_2["strength"] == 3):
+
+            if ant_1['attack'] == True: ant_2["point_life"] -= 2
+            if ant_2['attack'] == True: ant_1["point_life"] -= 3
+        # ================================================================
+        # Niveau 3 :
+        elif (ant_1["strength"] == 3) and (ant_2["strength"] == 1):
+
+            if ant_1['attack'] == True: ant_2["point_life"] = 0
+            if ant_2['attack'] == True: ant_1["point_life"] -= 1
+
+        elif (ant_1["strength"] == 3) and (ant_2["strength"] == 2):
+
+            if ant_1['attack'] == True: ant_2["point_life"] -= 3
+            if ant_2['attack'] == True: ant_1["point_life"] -= 2
+
+        elif (ant_1["strength"] == 3) and (ant_2["strength"] == 3):
+
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] -= 3
+
+        if (ant_1["point_life"] == 0): ant_1["strength"] = 0
+        if (ant_2["point_life"] == 0): ant_1["strength"] = 0
+
+        return ant_1["point_life"], ant_2["point_life"]  # Return The Valu
+
+    else:
+        print("You can't shoot")
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def moving_clods(r, c, strenght, key):
+    Permitting = None
+
+    if (([r, c, strenght] in Clods)or([r, c, strenght-1] in Clods)or([r, c, strenght-2] in Clods))and(key == 'LEFT'):
+        Permitting = True
+    if key == 'DOWN' and (Permitting):
+        Permitting = False
+
+    return Permitting
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+def general_function():
+    intro()
+    tray_game()
+    creat_ants_1()
+    placement_clods()
+    creat_ants_2()
+
+general_function()
+input()
