@@ -394,96 +394,63 @@ def shoot (ant_1,ant_2,r1,c1,r2,c2) :
 
     """
 
-# Utuliser les parametres de la fonction d'ordre .
-    if -2 <= r1 - r2 <= 2 and -2 <= c1 - c2 <= 2 :
-# Niveau 1 :
-# Pour preciser l ataquant et le recevoir il faut utuliser la fonction d ordre .
-        if (ant_1["strength"] == 1) and (ant_2["strength"] == 1)  :
+    if (-2 <= (r1 - r2) <= 2) and (-2 <= (c1 - c2) <= 2):
+        # ================================================================
+        # Niveau 1:
+        if (ant_1["strength"] == 1) and (ant_2["strength"] == 1):
 
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] -= 1
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] -= 1
 
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] -= 1 
+        elif (ant_1["strength"] == 1) and (ant_2["strength"] == 2):
 
-        if (ant_1["strength"] == 1) and (ant_2["strength"] == 2):
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] -= 2
 
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] -= 1
+        elif (ant_1["strength"] == 1) and (ant_2["strength"] == 3):
 
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] -= 2 
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] = 0
+        # ================================================================
+        # Niveau 2 :
+        elif (ant_1["strength"] == 2) and (ant_2["strength"] == 1):
 
-        if (ant_1["strength"] == 1) and (ant_2["strength"] == 3):
+            if ant_1['attack'] == True: ant_2["point_life"] -= 2
+            if ant_2['attack'] == True: ant_1["point_life"] -= 1
 
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] -= 1
+        elif (ant_1["strength"] == 2) and (ant_2["strength"] == 2):
 
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] == 0  
-                print('ant suppression')
-        
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] -= 1
 
-# Niveau 2 :
-        if (ant_1["strength"] == 2) and (ant_2["strength"] == 1)  :
+        elif (ant_1["strength"] == 2) and (ant_2["strength"] == 3):
 
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] -= 2
+            if ant_1['attack'] == True: ant_2["point_life"] -= 2
+            if ant_2['attack'] == True: ant_1["point_life"] -= 3
+        # ================================================================
+        # Niveau 3 :
+        elif (ant_1["strength"] == 3) and (ant_2["strength"] == 1):
 
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] -= 1 
+            if ant_1['attack'] == True: ant_2["point_life"] = 0
+            if ant_2['attack'] == True: ant_1["point_life"] -= 1
 
-        if (ant_1["strength"] == 2) and (ant_2["strength"] == 2):
+        elif (ant_1["strength"] == 3) and (ant_2["strength"] == 2):
 
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] -= 1
+            if ant_1['attack'] == True: ant_2["point_life"] -= 3
+            if ant_2['attack'] == True: ant_1["point_life"] -= 2
 
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] -= 1 
+        elif (ant_1["strength"] == 3) and (ant_2["strength"] == 3):
 
-        if (ant_1["strength"] == 2) and (ant_2["strength"] == 3):
+            if ant_1['attack'] == True: ant_2["point_life"] -= 1
+            if ant_2['attack'] == True: ant_1["point_life"] -= 3
 
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] -= 2
-                
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] -= 3  
-                
-        
-# Niveau 3 :
-        if (ant_1["strength"] == 3) and (ant_2["strength"] == 1)  :
+        if (ant_1["point_life"] == 0): ant_1["strength"] = 0
+        if (ant_2["point_life"] == 0): ant_1["strength"] = 0
 
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] == 0
-                print('ant suppression')
-# Dispartion de la fourmis et creation d une autre fourmi.
+        return ant_1["point_life"], ant_2["point_life"]  # Return The Valu
 
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] -= 1 
-
-        if (ant_1["strength"] == 3) and (ant_2["strength"] == 2):
-
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] -= 3
-
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] -= 2 
-
-        if (ant_1["strength"] == 3) and (ant_2["strength"] == 3):
-
-            if ant_1 == 'attack ant_2':
-                ant_2["point_life"] -= 1
-                
-            elif ant_2 == 'attack ant_1':
-                ant_1["point_life"] -= 3  
-                
-        
-    else :
-     print("You can't shoot")
-
-    if ant_1["point_life"]==0 or ant_2["point_life"]==0 :
-        print ('ant suppression')
-
+    else:
+        print("You can't shoot")
 
 #-----------------------------------------------------------------------------------------------------------
 # main function
